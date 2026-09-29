@@ -26,6 +26,13 @@ button, input, textarea, select { font: inherit; }
 .header-spacer { flex: 1; }
 .sync-status { background: rgba(255,255,255,.07); border: 1px solid #43657e; color: #d9eaf5; border-radius: 5px; height: 34px; display: flex; align-items: center; gap: 7px; padding: 0 10px; }
 .sync-status.offline { color: #ffda9a; border-color: #8d6b34; }
+.sync-status.conflict { background: #4d1d1b; border-color: #b33a39; color: #ffd7d4; }
+.external-change-btn.fui-Button { border-color: #6d5a36; color: #f0d7a8; }
+.external-change-btn:hover.fui-Button { background: rgba(255,255,255,.1); }
+.global-conflict-bar { position: sticky; top: 62px; z-index: 25; border-radius: 0; border-left: 0; border-right: 0; padding: 10px 27px; }
+.global-conflict-bar .fui-MessageBarBody { font-size: 12px; }
+.global-conflict-bar .conflict-bar-action { margin-top: 8px; }
+.notice-dismiss { margin-left: 10px; white-space: nowrap; }
 .user-chip { text-align: right; }
 .user-chip span, .user-chip strong { display: block; font-size: 10px; color: #9bb4c5; }
 .user-chip strong { color: white; font-size: 11px; margin-top: 3px; }
@@ -156,6 +163,45 @@ button, input, textarea, select { font: inherit; }
 .audit-row p { margin: 5px 0; font-size: 10px; color: #596c78; }
 .audit-row small { font-size: 9px; color: var(--muted); }
 
+.head-badges { display: flex; gap: 6px; flex: none; }
+.queue-panel .queue-progress { margin: 0; }
+.queue-empty { padding: 18px 14px; color: var(--muted); font-size: 11px; text-align: center; }
+.queue-row { padding: 11px 14px; border-bottom: 1px solid #edf1f3; }
+.queue-row:last-child { border-bottom: 0; }
+.queue-row.conflict { background: #fdf4f4; }
+.queue-row.sending { background: #f3f8fc; }
+.queue-row.history { background: #fafcfd; }
+.queue-row-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.queue-row-head strong { font-size: 11px; }
+.queue-row small { display: block; color: var(--muted); font-size: 9px; margin: 4px 0 5px; }
+.queue-row p { margin: 0 0 8px; font-size: 10px; color: #526570; line-height: 1.5; }
+.conflict-surface { max-width: 760px; width: calc(100vw - 40px); }
+.conflict-inline-message { margin: 4px 0 12px; }
+.conflict-intro { font-size: 12px; line-height: 1.7; color: #405767; margin: 0 0 14px; }
+.conflict-intro strong { color: var(--red); }
+.conflict-sides { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+.conflict-side { border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+.conflict-side.local { border-color: #dfb278; background: #fffaf1; }
+.conflict-side.server { border-color: #8fb3cf; background: #f4f9fd; }
+.conflict-side .side-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 9px 12px; border-bottom: 1px solid var(--line); font-size: 11px; font-weight: 700; }
+.conflict-side.local .side-head { color: #8c5818; }
+.conflict-side.server .side-head { color: #1f5e8c; }
+.conflict-side dl { margin: 0; padding: 6px 12px 10px; }
+.conflict-side dt { font-size: 9px; color: var(--muted); margin-top: 7px; }
+.conflict-side dd { margin: 3px 0 0; font-size: 11px; line-height: 1.55; }
+.conflict-side dd.pre-wrap { white-space: pre-wrap; }
+.merge-fields { display: grid; gap: 14px; }
+.merge-fields .fui-Radio { font-size: 11px; }
+.merge-custom-input { margin-top: 8px; }
+.merge-textarea { margin-top: 8px; font-size: 11px; }
+.conflict-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.conflict-actions .actions-spacer { flex: 1; }
+.conflict-actions .discard-confirm.fui-Button { background: #b33a39; color: white; border-color: #b33a39; }
+.queue-trace { margin-top: 15px; }
+.trace-table { overflow-x: auto; }
+.trace-row-line { min-width: 760px; }
+.trace-empty { padding: 16px; color: var(--muted); font-size: 11px; }
+
 @media (max-width: 1100px) {
   .overview-grid, .execution-grid, .release-grid, .audit-grid { grid-template-columns: 1fr; }
   .overview-side, .execution-side, .release-side { grid-template-columns: 1fr 1fr; }
@@ -182,4 +228,6 @@ button, input, textarea, select { font: inherit; }
   .form-grid { grid-template-columns: 1fr; }
   .wide-field { grid-column: auto; }
   .evidence-grid { grid-template-columns: 1fr; }
+  .conflict-sides { grid-template-columns: 1fr; }
+  .global-conflict-bar { top: 62px; padding: 10px 12px; }
 }
